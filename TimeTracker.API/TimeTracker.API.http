@@ -1,6 +1,42 @@
 @TimeTracker.API_HostAddress = http://localhost:5173
 
-GET {{TimeTracker.API_HostAddress}}/weatherforecast/
+### 1. קבלת כל הקטגוריות
+GET {{TimeTracker.API_HostAddress}}/api/categories
 Accept: application/json
 
-###
+### 2. יצירת קטגוריה
+POST {{TimeTracker.API_HostAddress}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "עבודה",
+  "color": "#4CAF50",
+  "isProductive": true
+}
+
+### 3. ניסיון ליצור קטגוריה כפולה (אמור להיכשל)
+POST {{TimeTracker.API_HostAddress}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "עבודה",
+  "color": "#000000",
+  "isProductive": false
+}
+
+### 4. קבלת קטגוריה לפי מזהה
+GET {{TimeTracker.API_HostAddress}}/api/categories/1
+Accept: application/json
+
+### 5. עדכון קטגוריה
+PUT {{TimeTracker.API_HostAddress}}/api/categories/1
+Content-Type: application/json
+
+{
+  "name": "עבודה",
+  "color": "#2196F3",
+  "isProductive": true
+}
+
+### 6. מחיקת קטגוריה
+DELETE {{TimeTracker.API_HostAddress}}/api/categories/1

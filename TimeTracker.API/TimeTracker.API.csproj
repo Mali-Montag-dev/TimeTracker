@@ -19,8 +19,4 @@
     <ProjectReference Include="..\TimeTracker.DTO\TimeTracker.DTO.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
