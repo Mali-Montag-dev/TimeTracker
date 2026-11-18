@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using TimeTracker.Desktop.ViewModels;
 
 namespace TimeTracker.Desktop.Views
 {
-    /// <summary>
-    /// Interaction logic for TodayPage.xaml
-    /// </summary>
     public partial class TodayPage : Page
     {
+        private readonly TodayViewModel _viewModel = new TodayViewModel();
+
         public TodayPage()
         {
             InitializeComponent();
+            DataContext = _viewModel;
+
+            Loaded += (_, _) => _viewModel.Start();
+            Unloaded += (_, _) => _viewModel.Stop();
         }
     }
 }

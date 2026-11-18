@@ -7,7 +7,6 @@ namespace TimeTracker.Desktop
 {
     public partial class MainWindow : FluentWindow
     {
-        private readonly ActivityTracker _tracker = new ActivityTracker();
 
         public MainWindow()
         {
@@ -17,7 +16,7 @@ namespace TimeTracker.Desktop
 
             Loaded += (_, _) => RootNavigation.Navigate(typeof(TodayPage));
 
-            _tracker.Start();
+            App.Tracker.Start();
         }
     }
 }

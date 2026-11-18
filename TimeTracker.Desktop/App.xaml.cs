@@ -1,13 +1,12 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using TimeTracker.Desktop.Services;
+using TimeTracker.Desktop.Tracking;
 
-namespace TimeTracker.Desktop;
-
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
-public partial class App : Application
+namespace TimeTracker.Desktop
 {
+    public partial class App : Application
+    {
+        public static ApiClient Api { get; } = new ApiClient();
+        public static ActivityTracker Tracker { get; } = new ActivityTracker();
+    }
 }
-

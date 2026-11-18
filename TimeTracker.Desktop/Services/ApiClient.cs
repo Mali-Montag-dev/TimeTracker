@@ -16,5 +16,12 @@ namespace TimeTracker.Desktop.Services
             var response = await _http.PostAsJsonAsync("api/activity/report", report);
             response.EnsureSuccessStatusCode();
         }
+
+        public async Task<DailyReportDto> GetDailyReportAsync(DateTime date)
+        {
+            var report = await _http.GetFromJsonAsync<DailyReportDto>(
+                $"api/reports/daily?date={date:yyyy-MM-dd}");
+            return report ?? new DailyReportDto();
+        }
     }
 }
