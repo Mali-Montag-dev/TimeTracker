@@ -42,7 +42,7 @@
                                Text="אפליקציה למעקב אחרי זמן העבודה מול המחשב. נבנתה ב-C# ו-.NET בארכיטקטורת שכבות: WPF עם MVVM, ‏ASP.NET Core Web API, ‏Entity Framework Core ו-SQL Server." />
 
                     <ui:HyperlinkButton Content="הקוד המלא ב-GitHub" Margin="-12,8,0,0"
-                                        NavigateUri="https://github.com/malischool3735-design/TimeTracker" />
+                                        NavigateUri="https://github.com/Mali-Montag-dev/TimeTracker" />
                 </StackPanel>
             </ui:Card>
 

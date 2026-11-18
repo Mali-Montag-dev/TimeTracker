@@ -178,7 +178,7 @@ TimeTracker/
 **Prerequisites:** Visual Studio 2022, .NET 9 SDK, SQL Server LocalDB.
 
 ```bash
-git clone https://github.com/malischool3735-design/TimeTracker.git
+git clone https://github.com/Mali-Montag-dev/TimeTracker.git
 cd TimeTracker
 ```
 

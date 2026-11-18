@@ -5,7 +5,7 @@
 #define MyAppName "TimeTracker"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "Mali Montag"
-#define MyAppURL "https://github.com/malischool3735-design/TimeTracker"
+#define MyAppURL "https://github.com/Mali-Montag-dev/TimeTracker"
 #define MyAppExeName "TimeTracker.Desktop.exe"
 
 [Setup]
