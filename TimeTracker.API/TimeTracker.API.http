@@ -61,3 +61,7 @@ Content-Type: application/json
   "displayName": "Visual Studio",
   "windowTitle": "TimeTracker - Microsoft Visual Studio"
 }
+
+### 9. דוח יומי
+GET {{TimeTracker.API_HostAddress}}/api/reports/daily
+Accept: application/json

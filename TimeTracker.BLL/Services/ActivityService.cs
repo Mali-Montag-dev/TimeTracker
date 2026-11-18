@@ -57,6 +57,13 @@ namespace TimeTracker.BLL.Services
             }
             else
             {
+                // סוגרים את ה-Session הקודם ברגע המעבר, כדי שלא יאבדו שניות
+                if (last != null && now - last.EndTime <= MaxGap)
+                {
+                    last.EndTime = now;
+                    await _sessionRepository.UpdateAsync(last);
+                }
+
                 var session = new ActivitySession
                 {
                     TrackedAppId = app.Id,
