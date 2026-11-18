@@ -1,11 +1,44 @@
-﻿<Window x:Class="TimeTracker.Desktop.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TimeTracker" Height="220" Width="450"
-        FlowDirection="RightToLeft">
-    <StackPanel Margin="20">
-        <TextBlock Text="עכשיו פעיל:" FontSize="14" Foreground="Gray"/>
-        <TextBlock x:Name="CurrentAppText" Text="..." FontSize="24" FontWeight="Bold" Margin="0,5,0,0"/>
-        <TextBlock x:Name="StatusText" Text="מתחיל..." Foreground="Gray" Margin="0,20,0,0"/>
-    </StackPanel>
-</Window>
+﻿<ui:FluentWindow x:Class="TimeTracker.Desktop.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:pages="clr-namespace:TimeTracker.Desktop.Views"
+                 Title="TimeTracker"
+                 Width="1100" Height="700"
+                 MinWidth="800" MinHeight="500"
+                 WindowStartupLocation="CenterScreen"
+                 ExtendsContentIntoTitleBar="True"
+                 WindowBackdropType="Mica"
+                 WindowCornerPreference="Round"
+                 FlowDirection="RightToLeft">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar Grid.Row="0" Title="TimeTracker – לאן הזמן הלך" />
+
+        <ui:NavigationView x:Name="RootNavigation"
+                           Grid.Row="1"
+                           PaneDisplayMode="Left"
+                           IsBackButtonVisible="Collapsed">
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="היום"
+                                       Icon="{ui:SymbolIcon Home24}"
+                                       TargetPageType="{x:Type pages:TodayPage}" />
+                <ui:NavigationViewItem Content="תוכנות"
+                                       Icon="{ui:SymbolIcon Apps24}"
+                                       TargetPageType="{x:Type pages:AppsPage}" />
+                <ui:NavigationViewItem Content="קטגוריות"
+                                       Icon="{ui:SymbolIcon Folder24}"
+                                       TargetPageType="{x:Type pages:CategoriesPage}" />
+            </ui:NavigationView.MenuItems>
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="הגדרות"
+                                       Icon="{ui:SymbolIcon Settings24}"
+                                       TargetPageType="{x:Type pages:SettingsPage}" />
+            </ui:NavigationView.FooterMenuItems>
+        </ui:NavigationView>
+    </Grid>
+</ui:FluentWindow>
