@@ -271,12 +271,14 @@ erDiagram
 - [x] הקמת מאגר GitHub
 - [x] יצירת Solution עם 5 פרויקטים וחיבור השכבות
 - [x] ישויות DAL: `Category`, `TrackedApp`, `ActivitySession`, `Goal`
-- [ ] DbContext ויצירת מסד הנתונים
-- [ ] DTO ו-BLL
-- [ ] API
-- [ ] מעקב אחרי חלון פעיל (Desktop)
-- [ ] מסכים, דוחות וגרפים
-- [ ] קובץ התקנה
-- [ ] README וצילומי מסך
+- [x] DbContext ויצירת מסד הנתונים
+- [x] DTO ו-BLL
+- [x] API
+- [x] מעקב אחרי חלון פעיל (Desktop)
+- [x] מסכים, דוחות וגרפים (WPF-UI, ‏MVVM, ‏LiveCharts2)
+- [x] אייקון ליד השעון, ריצה ברקע והפעלה אוטומטית
+- [x] קובץ התקנה (Inno Setup)
+- [x] README וצילומי מסך
+- [ ] יעדים יומיים (מתוכנן לגרסה הבאה)
 
 </div>
