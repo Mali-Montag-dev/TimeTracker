@@ -4,6 +4,10 @@ using System.Net.Http;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 using TimeTracker.Desktop.Helpers;
 
 namespace TimeTracker.Desktop.ViewModels
@@ -23,6 +27,12 @@ namespace TimeTracker.Desktop.ViewModels
         [ObservableProperty] private bool _hasError;
 
         public ObservableCollection<AppRow> Apps { get; } = new ObservableCollection<AppRow>();
+
+        // ← חדש: המקרא של התרשים
+        public ObservableCollection<CategoryRow> Categories { get; } = new ObservableCollection<CategoryRow>();
+
+        // ← חדש: הפרוסות של התרשים
+        [ObservableProperty] private ISeries[] _categorySeries = Array.Empty<ISeries>();
 
         public TodayViewModel()
         {
@@ -49,12 +59,14 @@ namespace TimeTracker.Desktop.ViewModels
             {
                 var report = await App.Api.GetDailyReportAsync(DateTime.Today);
 
+                // ===== כרטיסי סיכום =====
                 TotalTime = TimeFormatter.Format(report.TotalMinutes);
                 ProductiveTime = TimeFormatter.Format(report.ProductiveMinutes);
                 FocusPercent = report.TotalMinutes > 0
                     ? $"{report.ProductiveMinutes / report.TotalMinutes:P0}"
                     : "–";
 
+                // ===== רשימת תוכנות =====
                 Apps.Clear();
                 var max = report.Apps.Count > 0 ? report.Apps.Max(a => a.Minutes) : 1;
 
@@ -67,6 +79,30 @@ namespace TimeTracker.Desktop.ViewModels
                         app.Minutes / max * 100));
                 }
 
+                // ===== ← חדש: תרשים קטגוריות =====
+                var categories = report.Categories.Where(c => c.Minutes >= 0.5).ToList();
+
+                CategorySeries = categories
+                    .Select(c => (ISeries)new PieSeries<double>
+                    {
+                        Values = new[] { c.Minutes },
+                        Name = c.Name,
+                        Fill = new SolidColorPaint(SKColor.Parse(c.Color)),
+                        InnerRadius = 70
+                    })
+                    .ToArray();
+
+                // ===== ← חדש: מקרא קטגוריות =====
+                Categories.Clear();
+                foreach (var c in categories)
+                {
+                    Categories.Add(new CategoryRow(
+                        c.Name,
+                        TimeFormatter.Format(c.Minutes),
+                        c.Color,
+                        $"{c.Minutes / report.TotalMinutes:P0}"));
+                }
+
                 HasError = false;
             }
             catch (HttpRequestException)
@@ -77,4 +113,7 @@ namespace TimeTracker.Desktop.ViewModels
     }
 
     public record AppRow(string Name, string Category, string Time, double Percent);
+
+    // ← חדש
+    public record CategoryRow(string Name, string Time, string Color, string Percent);
 }
