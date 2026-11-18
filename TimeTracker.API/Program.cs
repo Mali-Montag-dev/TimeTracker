@@ -16,6 +16,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<ITrackedAppRepository, TrackedAppRepository>();
+builder.Services.AddScoped<IActivitySessionRepository, ActivitySessionRepository>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

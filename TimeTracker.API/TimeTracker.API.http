@@ -40,3 +40,24 @@ Content-Type: application/json
 
 ### 6. מחיקת קטגוריה
 DELETE {{TimeTracker.API_HostAddress}}/api/categories/1
+
+
+### 7. דיווח: chrome
+POST {{TimeTracker.API_HostAddress}}/api/activity/report
+Content-Type: application/json
+
+{
+  "processName": "chrome",
+  "displayName": "Google Chrome",
+  "windowTitle": "YouTube - Google Chrome"
+}
+
+### 8. דיווח: Visual Studio
+POST {{TimeTracker.API_HostAddress}}/api/activity/report
+Content-Type: application/json
+
+{
+  "processName": "devenv",
+  "displayName": "Visual Studio",
+  "windowTitle": "TimeTracker - Microsoft Visual Studio"
+}
