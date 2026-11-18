@@ -9,7 +9,7 @@ namespace TimeTracker.Desktop.ViewModels
 
         [ObservableProperty] private bool _runAtStartup;
 
-        public string Version { get; } = "גרסה 1.0";
+        public string Version { get; } = "גרסה 1.1";
 
         public SettingsViewModel()
         {

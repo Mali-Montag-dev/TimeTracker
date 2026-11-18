@@ -25,8 +25,8 @@ namespace TimeTracker.Desktop.Services
                 CreateNoWindow = true
             });
 
-            // מחכים עד 10 שניות שהשרת יעלה
-            for (int i = 0; i < 20; i++)
+            // מחכים עד 60 שניות שהשרת יעלה (בהפעלה הראשונה LocalDB לוקח זמן)
+            for (int i = 0; i < 120; i++)
             {
                 await Task.Delay(500);
                 if (await App.Api.IsAliveAsync())

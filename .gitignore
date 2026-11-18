@@ -23,6 +23,7 @@ mono_crash.*
 
 publish/
 installer/Output/
+installer/redist/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
