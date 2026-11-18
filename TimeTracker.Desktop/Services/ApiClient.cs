@@ -53,7 +53,20 @@ namespace TimeTracker.Desktop.Services
             var response = await _http.DeleteAsync($"api/categories/{id}");
             await EnsureSuccessAsync(response);
         }
+        // ===== תוכנות =====
 
+        public async Task<List<TrackedAppDto>> GetAppsAsync()
+        {
+            var list = await _http.GetFromJsonAsync<List<TrackedAppDto>>("api/apps");
+            return list ?? new List<TrackedAppDto>();
+        }
+
+        public async Task AssignCategoryAsync(int appId, int? categoryId)
+        {
+            var dto = new AssignCategoryDto { CategoryId = categoryId };
+            var response = await _http.PutAsJsonAsync($"api/apps/{appId}/category", dto);
+            await EnsureSuccessAsync(response);
+        }
         // ===== עזר =====
 
         private static async Task EnsureSuccessAsync(HttpResponseMessage response)

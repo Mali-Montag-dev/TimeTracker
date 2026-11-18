@@ -1,14 +1,67 @@
 ﻿<Page x:Class="TimeTracker.Desktop.Views.AppsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TimeTracker.Desktop.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="AppsPage">
 
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,24,32,32">
+
+            <!-- כותרת -->
+            <TextBlock Text="תוכנות" FontSize="32" FontWeight="SemiBold" />
+            <TextBlock Text="כל התוכנות שזוהו במחשב. בחרי קטגוריה לכל תוכנה, והשינוי יישמר מיד."
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" Margin="0,4,0,0" />
+
+            <!-- הודעת שגיאה -->
+            <ui:InfoBar Title="שגיאה" Message="{Binding ErrorMessage}" Severity="Error"
+                        IsOpen="{Binding HasError}" IsClosable="False" Margin="0,16,0,0" />
+
+            <!-- חיפוש -->
+            <ui:TextBox PlaceholderText="חיפוש תוכנה..." Icon="{ui:SymbolIcon Search24}"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                        Margin="0,20,0,16" />
+
+            <!-- רשימה -->
+            <ItemsControl ItemsSource="{Binding Apps}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ui:Card Margin="0,0,0,8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="220" />
+                                </Grid.ColumnDefinitions>
+
+                                <ui:SymbolIcon Symbol="Apps24" FontSize="22" Margin="0,0,14,0"
+                                               VerticalAlignment="Center"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding DisplayName}" FontSize="15" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding ProcessName}" FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+
+                                <ComboBox Grid.Column="2" VerticalAlignment="Center"
+                                          ItemsSource="{Binding DataContext.CategoryOptions, RelativeSource={RelativeSource AncestorType=Page}}"
+                                          SelectedItem="{Binding SelectedCategory}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Ellipse Width="10" Height="10" Fill="{Binding Color}"
+                                                         Margin="0,0,8,0" VerticalAlignment="Center" />
+                                                <TextBlock Text="{Binding Name}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </Grid>
+                        </ui:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+    </ScrollViewer>
 </Page>

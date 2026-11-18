@@ -21,6 +21,7 @@ builder.Services.AddScoped<ITrackedAppRepository, TrackedAppRepository>();
 builder.Services.AddScoped<IActivitySessionRepository, ActivitySessionRepository>();
 builder.Services.AddScoped<IActivityService, ActivityService>();
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<ITrackedAppService, TrackedAppService>();
 
 var app = builder.Build();
 

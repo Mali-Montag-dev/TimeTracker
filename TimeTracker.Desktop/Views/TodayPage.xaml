@@ -60,42 +60,7 @@
                     </StackPanel>
                 </ui:Card>
             </UniformGrid>
-            <!-- לפי קטגוריה -->
-<TextBlock Text="לפי קטגוריה" FontSize="20" FontWeight="SemiBold" Margin="0,32,0,12" />
-<ui:Card>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="260" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <lvc:PieChart Series="{Binding CategorySeries}" Height="240"
-                      TooltipPosition="Hidden" LegendPosition="Hidden" />
-
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding Categories}"
-                      VerticalAlignment="Center" Margin="24,0,0,0">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="60" />
-                        </Grid.ColumnDefinitions>
-                        <Ellipse Width="12" Height="12" Fill="{Binding Color}"
-                                 VerticalAlignment="Center" Margin="0,0,10,0" />
-                        <TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="2" Text="{Binding Time}" FontWeight="SemiBold"
-                                   VerticalAlignment="Center" Margin="16,0" />
-                        <TextBlock Grid.Column="3" Text="{Binding Percent}" VerticalAlignment="Center"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </Grid>
-</ui:Card>
+          
             <!-- לפי קטגוריה -->
             <TextBlock Text="לפי קטגוריה" FontSize="20" FontWeight="SemiBold" Margin="0,32,0,12" />
             <ui:Card>
