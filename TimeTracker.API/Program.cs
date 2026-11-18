@@ -24,6 +24,16 @@ builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<ITrackedAppService, TrackedAppService>();
 
 var app = builder.Build();
+// יצירה או עדכון אוטומטי של מסד הנתונים בהפעלה
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
+// בדיקת "האם השרת חי"
+app.MapGet("/api/health", () => Results.Ok());
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,7 +41,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

@@ -1,14 +1,51 @@
 ﻿<Page x:Class="TimeTracker.Desktop.Views.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TimeTracker.Desktop.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="SettingsPage">
 
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="32,24,32,32">
+
+            <TextBlock Text="הגדרות" FontSize="32" FontWeight="SemiBold" />
+
+            <!-- כללי -->
+            <TextBlock Text="כללי" FontSize="16" FontWeight="SemiBold" Margin="0,24,0,8" />
+
+            <ui:CardControl Icon="{ui:SymbolIcon Power24}">
+                <ui:CardControl.Header>
+                    <StackPanel>
+                        <TextBlock Text="הפעלה אוטומטית עם Windows" FontSize="14" />
+                        <TextBlock Text="האפליקציה תעלה ברקע עם הדלקת המחשב, ותתחיל לעקוב מיד."
+                                   FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                    </StackPanel>
+                </ui:CardControl.Header>
+                <ui:ToggleSwitch IsChecked="{Binding RunAtStartup}" />
+            </ui:CardControl>
+
+            <!-- אודות -->
+            <TextBlock Text="אודות" FontSize="16" FontWeight="SemiBold" Margin="0,24,0,8" />
+
+            <ui:Card>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="pack://application:,,,/Assets/app.png" Width="48" Height="48" />
+                        <StackPanel Margin="16,0,0,0" VerticalAlignment="Center">
+                            <TextBlock Text="TimeTracker – לאן הזמן הלך" FontSize="16" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding Version}"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <TextBlock TextWrapping="Wrap" Margin="0,16,0,0"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               Text="אפליקציה למעקב אחרי זמן העבודה מול המחשב. נבנתה ב-C# ו-.NET בארכיטקטורת שכבות: WPF עם MVVM, ‏ASP.NET Core Web API, ‏Entity Framework Core ו-SQL Server." />
+
+                    <ui:HyperlinkButton Content="הקוד המלא ב-GitHub" Margin="-12,8,0,0"
+                                        NavigateUri="https://github.com/malischool3735-design/TimeTracker" />
+                </StackPanel>
+            </ui:Card>
+
+        </StackPanel>
+    </ScrollViewer>
 </Page>

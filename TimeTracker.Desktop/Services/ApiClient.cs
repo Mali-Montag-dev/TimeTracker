@@ -67,6 +67,23 @@ namespace TimeTracker.Desktop.Services
             var response = await _http.PutAsJsonAsync($"api/apps/{appId}/category", dto);
             await EnsureSuccessAsync(response);
         }
+
+        // ===== בדיקת שרת =====
+
+        public async Task<bool> IsAliveAsync()
+        {
+            try
+            {
+                var response = await _http.GetAsync("api/health");
+                return response.IsSuccessStatusCode;
+            }
+            catch (HttpRequestException)
+            {
+                return false;
+            }
+        }
+
+
         // ===== עזר =====
 
         private static async Task EnsureSuccessAsync(HttpResponseMessage response)
