@@ -1,12 +1,14 @@
 ﻿using System.Net.Http;
 using System.Windows.Threading;
 using TimeTracker.Desktop.Services;
+using System.Diagnostics;
 
 namespace TimeTracker.Desktop.Tracking
 {
     public class ActivityTracker
     {
         private static readonly TimeSpan IdleThreshold = TimeSpan.FromMinutes(5);
+        private static readonly string OwnProcessName = Process.GetCurrentProcess().ProcessName;
 
         private readonly ApiClient _api = new ApiClient();
         private readonly DispatcherTimer _timer = new DispatcherTimer
@@ -32,6 +34,10 @@ namespace TimeTracker.Desktop.Tracking
 
             var report = WindowsApi.GetActiveWindow();
             if (report == null)
+                return;
+
+            // לא סופרים את הזמן שבו מסתכלים על האפליקציה עצמה
+            if (string.Equals(report.ProcessName, OwnProcessName, StringComparison.OrdinalIgnoreCase))
                 return;
 
             CurrentApp = report.DisplayName;
